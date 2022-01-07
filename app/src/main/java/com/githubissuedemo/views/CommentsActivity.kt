@@ -42,8 +42,6 @@ class CommentsActivity : AppCompatActivity() {
         initObserver()
     }
 
-    //https://github.com/nitish2407/TurtleMintDemo.git
-
     private fun initObserver() {
         commentsViewModel?.allComments?.observe(this,
             Observer<List<CommentsResponse>> { mCommentsModel ->
