@@ -37,6 +37,7 @@ class CommentsActivity : AppCompatActivity() {
 
         val issue = intent.getStringExtra("issue")
         val issueResponse: IssuesResponse = Gson().fromJson(issue, IssuesResponse::class.java)
+        activityCommentsBinding.mIssueModel = issueResponse
 
         commentsViewModel!!.getAllComments(issueResponse.commentsUrl)
         initObserver()

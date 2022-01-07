@@ -105,6 +105,7 @@ class User {
       try {
         date = inputFormat.parse(time)
         str = outputFormat.format(date)
+        str = "Last updated on $str"
       } catch (e: ParseException) {
         e.printStackTrace()
       }
