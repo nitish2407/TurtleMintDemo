@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.githubissuedemo.R
+import com.githubissuedemo.Utils
 import com.githubissuedemo.adapters.MainAdapter
 import com.githubissuedemo.databinding.ActivityMainBinding
 import com.githubissuedemo.db.DatabaseHandler
@@ -20,9 +21,9 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     private lateinit var activityMainBinding: ActivityMainBinding
 
-    internal var loadBar : ProgressBar? = null
+    internal var loadBar: ProgressBar? = null
     var mainViewModel: MainViewModel? = null
-    private var mIssueAdapter:MainAdapter? = null
+    private var mIssueAdapter: MainAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,8 +55,8 @@ class MainActivity : AppCompatActivity() {
                 ///if any thing chnage the update the UI
                 val db = DatabaseHandler(this, null)
                 val issueList = mIssuesModel as ArrayList<IssuesResponse>
-
-                db.addIssue(issueList)
+                if (Utils.isNetworkConnected(this))
+                    db.addIssue(issueList)
                 mIssueAdapter?.setIssuesList(mIssuesModel as ArrayList<IssuesResponse>)
                 loadBar?.visibility = View.GONE
             })
