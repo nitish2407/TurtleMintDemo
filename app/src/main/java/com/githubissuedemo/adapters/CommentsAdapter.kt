@@ -1,20 +1,13 @@
 package com.githubissuedemo.adapters
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.githubissuedemo.ClickListeners
 import com.githubissuedemo.R
 import com.githubissuedemo.databinding.CommentsListItemBinding
-import com.githubissuedemo.databinding.RowListItemBinding
 import com.githubissuedemo.models.CommentsResponse
-import com.githubissuedemo.models.IssuesResponse
-import com.githubissuedemo.views.CommentsActivity
-import com.githubissuedemo.views.MainActivity
 
 class CommentsAdapter(context: Context) : RecyclerView.Adapter<CommentsAdapter.CommentsViewHolder>() {
     val mContext = context
@@ -29,8 +22,10 @@ class CommentsAdapter(context: Context) : RecyclerView.Adapter<CommentsAdapter.C
     }
 
     override fun onBindViewHolder(mCommentsViewHolder: CommentsViewHolder, i: Int) {
-        val comment = mCommentsModel!![i]
-        mCommentsViewHolder.commentsListItemBinding.mCommentModel = comment
+        if (mCommentsModel != null && mCommentsModel?.size!! > 0) {
+            val comment = mCommentsModel!![i]
+            mCommentsViewHolder.commentsListItemBinding.mCommentModel = comment
+        }
     }
 
     override fun getItemCount(): Int {

@@ -3,6 +3,7 @@ package com.githubissuedemo.repository
 import com.githubissuedemo.models.IssuesResponse
 import com.githubissuedemo.network.RetrofitClient
 import androidx.lifecycle.MutableLiveData
+import com.githubissuedemo.db.DatabaseHandler
 import com.githubissuedemo.models.CommentsResponse
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
@@ -15,11 +16,11 @@ import retrofit2.Response
 class IssuesRepository {
     private val mIssueList = ArrayList<IssuesResponse>()
     private val mCommentList = ArrayList<CommentsResponse>()
-    private val mutableLiveData = MutableLiveData<List<IssuesResponse>>()
+    private val mutableLiveData = MutableLiveData<ArrayList<IssuesResponse>>()
     private val commentsMutableLiveData = MutableLiveData<ArrayList<CommentsResponse>>()
 
     ////call to internet and  retun  MutableLiveData
-    fun getAllGithubIssues(): MutableLiveData<List<IssuesResponse>> {
+    fun getAllGithubIssues(): MutableLiveData<ArrayList<IssuesResponse>> {
 
         ///ini Retrofit Class
         val userDataService = RetrofitClient.service
@@ -95,9 +96,9 @@ class IssuesRepository {
                 if (resp != null && resp.body() != null) {
 
                     val json = JsonParser().parse(resp.body()!!.toString()).asJsonArray
+
                     //Log.e("data",json.toString())
                     if (json != null) {
-
                         for (i in 0..json.size() - 1) {
                             try {
 

@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.githubissuedemo.ClickListeners
 import com.githubissuedemo.R
 import com.githubissuedemo.databinding.RowListItemBinding
 import com.githubissuedemo.models.IssuesResponse
 import com.githubissuedemo.views.CommentsActivity
-import com.githubissuedemo.views.MainActivity
 import com.google.gson.Gson
 
 class MainAdapter(context: Context) : RecyclerView.Adapter<MainAdapter.IssuesViewHolder>() {

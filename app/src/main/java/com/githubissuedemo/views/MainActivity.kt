@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.githubissuedemo.R
 import com.githubissuedemo.adapters.MainAdapter
 import com.githubissuedemo.databinding.ActivityMainBinding
+import com.githubissuedemo.db.DatabaseHandler
+import com.githubissuedemo.models.CommentsResponse
 import com.githubissuedemo.models.IssuesResponse
 import com.githubissuedemo.viewModels.MainViewModel
 
@@ -41,14 +43,19 @@ class MainActivity : AppCompatActivity() {
         //set the CustomAdapter
         recyclerView.adapter = mIssueAdapter
 
-        getAllIssues()
+        mainViewModel!!.getAllIssues()
+        initObserver()
     }
 
-    private fun getAllIssues() {
-        ///get the list of dev from api response
-        mainViewModel!!.getAllIssues.observe(this,
-            Observer<List<Any>> { mIssuesModel ->
+    private fun initObserver() {
+
+        mainViewModel?.allIssues?.observe(this,
+            Observer<ArrayList<IssuesResponse>> { mIssuesModel ->
                 ///if any thing chnage the update the UI
+                val db = DatabaseHandler(this, null)
+                val issueList = mIssuesModel as ArrayList<IssuesResponse>
+
+                db.addIssue(issueList)
                 mIssueAdapter?.setIssuesList(mIssuesModel as ArrayList<IssuesResponse>)
                 loadBar?.visibility = View.GONE
             })

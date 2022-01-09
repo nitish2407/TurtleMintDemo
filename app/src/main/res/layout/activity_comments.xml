@@ -1,88 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="mIssueModel"
             type="com.githubissuedemo.models.IssuesResponse" />
     </data>
 
-
-    <RelativeLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:showIn="@layout/activity_comments">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:padding="@dimen/_8sdp"
-            android:text="@{mIssueModel.title}"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_20ssp"
-            tools:text="demo" />
-
-        <TextView
-            android:id="@+id/tv_descr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_title"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:padding="@dimen/_8sdp"
-            android:text="@{mIssueModel.body}"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/_12ssp"
-            tools:text="demo" />
-
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:padding="@dimen/_4sdp"
-            android:layout_below="@+id/tv_descr"
-            bind:updated_at="@{mIssueModel.updatedAt}"
-            android:textColor="@android:color/holo_green_dark"
-            android:textSize="@dimen/_12ssp"
-            android:textStyle="bold"
-            tools:text="demo" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvComments"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/tv_time"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:padding="@dimen/_4sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:showIn="@layout/activity_comments">
 
-        <ProgressBar
-            android:id="@+id/loadBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:padding="@dimen/_8sdp"
+                android:text="@{mIssueModel.title}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20ssp"
+                tools:text="demo" />
+
+            <TextView
+                android:id="@+id/tv_descr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:padding="@dimen/_8sdp"
+                android:text="@{mIssueModel.body}"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_12ssp"
+                tools:text="demo" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_descr"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:padding="@dimen/_4sdp"
+                android:textColor="@android:color/holo_green_dark"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                bind:updated_at="@{mIssueModel.updatedAt}"
+                tools:text="demo" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvComments"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tv_time"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:padding="@dimen/_4sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/loadBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
 
 
 </layout>
